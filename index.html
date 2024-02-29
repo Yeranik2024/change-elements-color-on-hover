@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Effect</title>
+    <style>
+       
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            transition: color 0.3s ease; 
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li id="item1">Item 1</li>
+        <li id="item2">Item 2</li>
+        <li id="item3">Item 3</li>
+        <li id="item4">Item 4</li>
+    </ul>
+
+    <script>
+        
+        function changeColorOnHover(event) {
+            const listItem = event.target;
+
+            listItem.dataset.originalColor = listItem.style.color || getComputedStyle(listItem).color;
+
+            listItem.style.color = 'red'; 
+        }
+
+        function revertColorOnLeave(event) {
+            const listItem = event.target;
+
+            listItem.style.color = listItem.dataset.originalColor;
+        }
+
+        const listItems = document.querySelectorAll('li');
+        listItems.forEach(item => {
+            item.addEventListener('mouseover', changeColorOnHover);
+            item.addEventListener('mouseout', revertColorOnLeave);
+        });
+    </script>
+
+</body>
+</html>
